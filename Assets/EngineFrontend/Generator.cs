@@ -21,6 +21,9 @@ public class Generator : MonoBehaviour {
 			time = 0;
 
 			var actions = this.BallGenerator.GetActions()[step];
+
+			if (actions.Type == e.ActionType.Nope) { return; }
+
 			this.transform.position = new Vector2(actions.Position.X, actions.Position.Y);
 
 			Debug.Log("Generator: " + actions.Type);

@@ -54,9 +54,10 @@ public class Level : MonoBehaviour {
 			}
 		}
 
+		Debug.Log("dsf");
 		for (var i = 0; i < ballHistory.GetList().Count; i++ ) {
 			var ball = ballHistory.GetList()[i];
-			// var clone = Instantiate(this.BallPrefab);
+			var clone = Instantiate(this.BallPrefab);
 			// clone.GetComponent<Ball>().eBall = ball;
 		}
 	}

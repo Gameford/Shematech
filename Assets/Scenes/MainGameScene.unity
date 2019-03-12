@@ -174,8 +174,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 240331505
-  m_SortingLayer: 1
+  m_SortingLayerID: -594653607
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 093b4027910fb7f4a94ad6f38b15de8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -253,6 +253,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4668804214386642, guid: ea206a25e08619045b155992e5c971d9, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212646040706548520, guid: ea206a25e08619045b155992e5c971d9,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -2022686411
+      objectReference: {fileID: 0}
+    - target: {fileID: 212646040706548520, guid: ea206a25e08619045b155992e5c971d9,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212646040706548520, guid: ea206a25e08619045b155992e5c971d9,
+        type: 2}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1323,10 +1338,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12462866e90d554293fd9519e67b200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballList: []
+  ballList:
+  - Color: 0
+  - Color: 0
   GeneratorPrefab: {fileID: 1429837322338498, guid: 455f710ecda4f7a4daf821928ec366e0,
     type: 2}
-  ColorSwitchPrefab: {fileID: 1971394543032502, guid: a7e6a821ecaf7d74983dc2bfa8ba6fd9,
+  ColorSwitchPrefab: {fileID: 1890949346960800, guid: a7e6a821ecaf7d74983dc2bfa8ba6fd9,
     type: 2}
   BallPrefab: {fileID: 1922984586610218, guid: d89808bb241b32a4299f4ae3f3f6a2a8, type: 2}
 --- !u!1 &1396221896
@@ -1391,7 +1408,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 410540423
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 21fd3d72f135a4a46be70be879f6c1f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

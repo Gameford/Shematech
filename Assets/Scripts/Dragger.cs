@@ -12,7 +12,6 @@ class Dragger : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("asdasdsdasdasd");
         dragging = true;
         delta = this.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (rightCell)
