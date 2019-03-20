@@ -50,8 +50,6 @@ namespace Engine
             _position = position;
             ID = id;
             _actions = new List<StepAction>();
-            
-            BallHistory.GetInstance().AddBall(this);
         }
 
         /// <summary>
@@ -127,6 +125,7 @@ namespace Engine
                 ball.GetActions().Add(new StepAction(ActionType.BallMove, null, ball.GetPosition()));
             }
 
+            BallHistory.GetInstance().AddBall(ball);
             newWorld.Add(ball);
         }
 

@@ -22,7 +22,10 @@ namespace Engine
 
         public static BallHistory GetInstance()
         {
-            return _instance ?? (_instance = new BallHistory());
+            if (_instance == null) {
+                _instance = new BallHistory();
+            }
+            return _instance;
         }
 
         public void AddBall(Ball ball)
@@ -38,6 +41,10 @@ namespace Engine
                 _balls.RemoveAt(findBall);
                 _balls.Add(ball);
             }
+        }
+
+        public void Clear() {
+            this._balls.Clear();
         }
     }
     

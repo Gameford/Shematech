@@ -85,6 +85,7 @@ namespace Engine
                     var ball = new Ball {Color = pair.Key};
                     ball.SetPosition(GetPosition());
                     _genBalls.Add(ball);
+                    BallHistory.GetInstance().AddBall(ball);
                 }
 
             Shuffle(_genBalls);

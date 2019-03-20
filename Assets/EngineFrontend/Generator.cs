@@ -9,12 +9,14 @@ public class Generator : MonoBehaviour {
 	public float time = 0;
 	public int step = 0;
 
-	// Use this for initialization
+	private bool active = false;
+
 	void Start () {
 	}
 	
-	// Update is called once per frame
 	void Update () {
+		if (!this.active) { return; }
+
 		time += Time.deltaTime;
 
 		if (time >= 1) {

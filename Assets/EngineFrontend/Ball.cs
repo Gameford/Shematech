@@ -4,7 +4,7 @@ using UnityEngine;
 using e = Engine;
 
 public class Ball : MonoBehaviour {
-	public e.Ball eBall;
+	public e.Ball eBall = null;
 
 	public float time = 0;
 	public int step = 0;
@@ -27,7 +27,7 @@ public class Ball : MonoBehaviour {
 				this.transform.position = new Vector2(action.Position.X, action.Position.Y);
 				this.transform.position = new Vector2(action.Position.X, action.Position.Y);
 				this.transform.position = new Vector2(action.Position.X, action.Position.Y);		
-				Debug.Log("Ball: " + action.Type);		
+				Debug.Log("Ball: " + action.Type + action.Position + " " + this.eBall.ID);		
 				switch (action.Type) {
 				}
 			}
