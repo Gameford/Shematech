@@ -46,7 +46,7 @@ namespace Engine
                 _actions.Add(new StepAction(ActionType.BascketColorMissing, null, GetPosition()));   
             }
 
-            ball.GetActions().Add(new StepAction(ActionType.BallConsumed, this, GetPosition()));
+            ball.GetActions().Add(new Ball.StepAction(ActionType.BallConsumed, this, GetPosition(), ball.Color));
         }
 
         public override string DebugPrint()

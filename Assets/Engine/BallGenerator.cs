@@ -109,7 +109,7 @@ namespace Engine
             }
 
             var ball = _genBalls.First();
-            ball.GetActions().Add(new StepAction(ActionType.BallProduced, null, GetPosition()));
+            ball.GetActions().Add(new Ball.StepAction(ActionType.BallProduced, null, GetPosition(), ball.Color));
             _genBalls.Remove(ball);
 
             _actions.Add(new StepAction(ActionType.GenerateNewBall, null, GetPosition()));

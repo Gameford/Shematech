@@ -68,9 +68,9 @@ namespace Engine
             }
 
             ball.Color = ToColor;
-            ball.GetActions().Add(new StepAction(ActionType.BallChangeColor, this, ball.GetPosition()));
+            ball.GetActions().Add(new Ball.StepAction(ActionType.BallChangeColor, this, ball.GetPosition(), ball.Color));
             ball.Move(0, 1);
-            ball.GetActions().Add(new StepAction(ActionType.BallMove, this, ball.GetPosition()));
+            ball.GetActions().Add(new Ball.StepAction(ActionType.BallMove, this, ball.GetPosition(), ball.Color));
         }
 
         public override string DebugPrint()

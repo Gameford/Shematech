@@ -14,7 +14,7 @@ public class Level : MonoBehaviour {
 	public GameObject BallPrefab;
     private bool isPlay;
 
-    void Start () {
+  void Start () {
 		ballHistory = e.BallHistory.GetInstance();
 		ballHistory.Clear();
 		

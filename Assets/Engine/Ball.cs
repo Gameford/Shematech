@@ -84,7 +84,7 @@ namespace Engine
         }
 
         /// <summary>
-        ///     Склонировать текщий шарик.
+        ///     Склонировать текущий шарик.
         /// </summary>
         /// <returns>Новый обьект шарика.</returns>
         public object Clone()
@@ -116,13 +116,13 @@ namespace Engine
             
             if (otherBlock != null)
             {
-                ball.GetActions().Add(new StepAction(ActionType.BallInteract, otherBlock, ball.GetPosition()));
+                ball.GetActions().Add(new StepAction(ActionType.BallInteract, otherBlock, ball.GetPosition(), ball.Color));
                 otherBlock.Interact(ball);
             }
             else
             {
                 ball.Move(0, 1);
-                ball.GetActions().Add(new StepAction(ActionType.BallMove, null, ball.GetPosition()));
+                ball.GetActions().Add(new StepAction(ActionType.BallMove, null, ball.GetPosition(), ball.Color));
             }
 
             BallHistory.GetInstance().AddBall(ball);
@@ -148,6 +148,48 @@ namespace Engine
         {
             _position.X += point.X;
             _position.Y += point.Y;
+        }
+
+        public class StepAction
+        {
+            public StepAction(ActionType type, IInteract subject, Point position, Color color)
+            {
+                Type = type;
+                Subject = subject;
+                Position = position;
+                CurrentStep = StepCounter.GetInstance().GetCounter();
+                Color = color;
+            }
+
+            /// <summary>
+            ///     Номер текущего шага.
+            /// </summary>
+            public int CurrentStep { get; set; }
+            
+            /// <summary>
+            ///     Тип действия.
+            /// </summary>
+            public ActionType Type { get; set; }
+
+            /// <summary>
+            ///     Если тип действия не взаимодействие, то поля не будет (null).
+            /// </summary>
+            public IInteract Subject { get; set; }
+            
+            /// <summary>
+            ///     Позиция в которой произшло событие.
+            /// </summary>
+            public Point Position { get; set; }
+
+            /// <summary>
+            ///     Цвет в момент события
+            /// </summary>
+            public Color Color { get; set; }
+        }
+        new protected IList<StepAction> _actions;
+        new public IList<StepAction> GetActions()
+        {
+            return _actions;
         }
     }
 }

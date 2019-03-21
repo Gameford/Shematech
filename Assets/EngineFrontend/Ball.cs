@@ -27,7 +27,6 @@ public class Ball : MonoBehaviour {
 				this.transform.position = new Vector2(action.Position.X, action.Position.Y);
 				this.transform.position = new Vector2(action.Position.X, action.Position.Y);
 				this.transform.position = new Vector2(action.Position.X, action.Position.Y);		
-				Debug.Log("Ball: " + action.Type + action.Position + " " + this.eBall.ID);		
 				switch (action.Type) {
 				}
 			}
