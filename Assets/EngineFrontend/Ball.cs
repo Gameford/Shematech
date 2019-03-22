@@ -24,9 +24,8 @@ public class Ball : MonoBehaviour {
 			var actions = this.eBall.GetActions();
 			if (actions.Count > step) {
 				var action = actions[step];
-				this.transform.position = new Vector2(action.Position.X, action.Position.Y);
-				this.transform.position = new Vector2(action.Position.X, action.Position.Y);
-				this.transform.position = new Vector2(action.Position.X, action.Position.Y);		
+
+				this.transform.position = GameObject.Find("Grid").GetComponent<GridInit>().cellsArray[action.Position.Y, action.Position.X].transform.position;
 				switch (action.Type) {
 				}
 			}

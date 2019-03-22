@@ -9,7 +9,7 @@ public class GridInit : MonoBehaviour {
 	[Header("х между клетками")] public float HSpace;
 	[Header("y между клетками")] public float VSpace;
 
-	private Cell[,] cellsArray;
+	public Cell[,] cellsArray;
 
 	void Start () {	
 		cellsArray = new Cell[height,width];
