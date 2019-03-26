@@ -78,14 +78,16 @@ namespace Engine
         ///     в случайном порядке.
         /// </summary>
         private void _generateBalls()
-        {
+        {   
+            int ballsCount = 0;
             foreach (var pair in _ballsSettings)
                 for (var i = 0; i < pair.Value; i++)
                 {
-                    var ball = new Ball {Color = pair.Key};
+                    var ball = new Ball(ballsCount) {Color = pair.Key};
                     ball.SetPosition(GetPosition());
                     _genBalls.Add(ball);
                     BallHistory.GetInstance().AddBall(ball);
+                    ballsCount++;
                 }
 
             Shuffle(_genBalls);

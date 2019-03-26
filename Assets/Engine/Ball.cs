@@ -35,6 +35,11 @@ namespace Engine
         public Color Color;
 
         /// <summary>
+        ///     Порядковый номер шаирка
+        /// </summary>
+        public int Count;
+
+        /// <summary>
         ///     Уникальный GUID для шарика, необходим для отслеживания истории.
         /// </summary>
         public Guid ID;
@@ -44,12 +49,13 @@ namespace Engine
         /// </summary>
         /// <param name="color">Цвет шарика.</param>
         /// <param name="position">Позиция шарика.</param>
-        public Ball(Color color, Point position, Guid id)
+        public Ball(Color color, Point position, Guid id, int count)
         {
             Color = color;
             _position = position;
             ID = id;
             _actions = new List<StepAction>();
+            Count = count;
         }
 
         /// <summary>
@@ -59,7 +65,7 @@ namespace Engine
         /// <param name="x">Координата по X.</param>
         /// <param name="y">Координа по Y.</param>
         public Ball(Color color, int x, int y)
-            : this(color, new Point(x, y), Guid.NewGuid())
+            : this(color, new Point(x, y), Guid.NewGuid(), 0)
         {
         }
 
@@ -69,7 +75,17 @@ namespace Engine
         ///         Цвет - Green;
         ///         Позиция - X: 0, Y: 0;
         /// </summary>
-        public Ball(Guid id) : this(default(Color), default(Point), id)
+        public Ball(Guid id) : this(default(Color), default(Point), id, 0)
+        {
+        }
+
+        /// <summary>
+        ///     Создать новый экземпляр шарика.
+        ///     Шарик будет иметь начальные значения:
+        ///         Цвет - Green;
+        ///         Позиция - X: 0, Y: 0;
+        /// </summary>
+        public Ball(Guid id, int count) : this(default(Color), default(Point), id, 0)
         {
         }
         
@@ -79,7 +95,17 @@ namespace Engine
         ///         Цвет - Green;
         ///         Позиция - X: 0, Y: 0;
         /// </summary>
-        public Ball() : this(default(Color), default(Point), Guid.NewGuid())
+        public Ball() : this(default(Color), default(Point), Guid.NewGuid(), 0)
+        {
+        }
+
+        /// <summary>
+        ///     Создать новый экземпляр шарика.
+        ///     Шарик будет иметь начальные значения:
+        ///         Цвет - Green;
+        ///         Позиция - X: 0, Y: 0;
+        /// </summary>
+        public Ball(int count) : this(default(Color), default(Point), Guid.NewGuid(), count)
         {
         }
 
@@ -112,6 +138,11 @@ namespace Engine
             var ball = Clone() as Ball;
             Debug.Assert(ball != null, "ball != null");
 
+            while(Count>0){
+                ball.GetActions().Add(new StepAction(ActionType.Nope, null, ball.GetPosition(), ball.Color));
+                Count--;
+            }
+
             var otherBlock = Game.GetByPos(ball.GetPosition(), oldWorld) as IInteract;
             
             if (otherBlock != null)
@@ -128,6 +159,7 @@ namespace Engine
             BallHistory.GetInstance().AddBall(ball);
             newWorld.Add(ball);
         }
+
 
         /// <summary>
         ///     Сдвинуть шарик на определенное кол-во клеток.
