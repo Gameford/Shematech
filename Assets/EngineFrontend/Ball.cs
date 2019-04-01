@@ -25,13 +25,33 @@ public class Ball : MonoBehaviour {
 			if (actions.Count > step) {
 				var action = actions[step];
 
-				this.transform.position = GameObject.Find("Grid").GetComponent<GridInit>().cellsArray[action.Position.Y, action.Position.X].transform.position;
 				switch (action.Type) {
+					case e.ActionType.BallProduced:
+						
+					break;
+					case e.ActionType.BallMove:
+						var grid_cell = GameObject.Find("Grid").GetComponent<GridInit>().cellsArray[action.Position.Y, action.Position.X];
+						if (grid_cell) {
+							this.transform.position = grid_cell.transform.position;
+						}
+						else if(CheckConsume(step)) {
+
+						}
+					break;
 				}
 			}
 			
 
 			step++;
 		}
+	}
+
+	bool CheckConsume(int step) {
+		var action = this.eBall.GetActions()[step];
+		if (this.eBall.GetActions()[step+1].Type == e.ActionType.BallInteract
+			&& this.eBall.GetActions()[step+2].Type == e.ActionType.BallConsumed) {
+				return true;
+		}
+		return false;
 	}
 }

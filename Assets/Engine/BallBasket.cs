@@ -1,8 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Engine
 {
+    [System.Serializable]
+    /// <summary>
+    ///     Корзина.
+    /// </summary>
     public class Bascket : BaseStepable, IInteract
     {
         public Color Color { get; set; }

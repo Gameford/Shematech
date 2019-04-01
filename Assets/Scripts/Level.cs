@@ -18,10 +18,10 @@ public class Level : MonoBehaviour {
 		ballHistory = e.BallHistory.GetInstance();
 		ballHistory.Clear();
 		
-		var ifBlock = new e.ColorCondition(e.Color.Green, new e.Point(-1, 0),  2, 4);
-		var chColor = new e.ColorSwitch(e.Color.Red, e.Color.Green, 3, 8);
-		var basket = new e.Bascket(e.Color.Green, 3, 10);
-		var basket2 = new e.Bascket(e.Color.Green, 1, 10);
+		var ifBlock = new e.ColorCondition(e.Color.Green, new e.Point(-1, 0),  2, 2);
+		var chColor = new e.ColorSwitch(e.Color.Red, e.Color.Green, 3, 4);
+		var basket = new e.Bascket(e.Color.Green, 3, 8);
+		var basket2 = new e.Bascket(e.Color.Green, 1, 8);
 		
 		this.game = new e.Game();
 		game.AddObject(ifBlock);
@@ -41,7 +41,7 @@ public class Level : MonoBehaviour {
 			{e.Color.Red, 1}
 		};
 
-		var g = new e.BallGenerator(balls, 2, 0);
+		var g = new e.BallGenerator(balls, 2, -1);
 		
 		game.AddObject(g);
 
