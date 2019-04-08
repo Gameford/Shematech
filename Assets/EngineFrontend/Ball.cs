@@ -21,18 +21,19 @@ public class Ball : MonoBehaviour {
 		if (time >= 1) {
 			time = 0;
 
-			var actions = this.eBall.GetActions();
+			var actions = this.eBall.GetMoveActions();
 			if (actions.Count > step) {
 				var action = actions[step];
-
+				var grid = GameObject.Find("Grid").GetComponent<GridInit>();
+				Cell cell = null;
 				switch (action.Type) {
 					case e.ActionType.BallProduced:
 						
 					break;
 					case e.ActionType.BallMove:
-						var grid_cell = GameObject.Find("Grid").GetComponent<GridInit>().cellsArray[action.Position.Y, action.Position.X];
-						if (grid_cell) {
-							this.transform.position = grid_cell.transform.position;
+						cell = grid.cellsArray[action.Position.Y, action.Position.X];
+						if (cell) {
+							this.transform.position = cell.transform.position;
 						}
 						else if(CheckConsume(step)) {
 

@@ -223,5 +223,17 @@ namespace Engine
         {
             return _actions;
         }
+
+        public IList<StepAction> GetMoveActions()
+        {
+            IList<StepAction> move_actions = new List<StepAction>();
+            foreach (var action in _actions)
+            {
+                if (action.Type == ActionType.BallMove || action.Type == ActionType.Nope){
+                    move_actions.Add(action);
+                }
+            }
+            return move_actions;    
+        }
     }
 }
