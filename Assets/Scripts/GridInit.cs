@@ -12,7 +12,7 @@ public class GridInit : MonoBehaviour {
 	public Cell[,] cellsArray;
 
 	void Start () {	
-		cellsArray = new Cell[height,width];
+		cellsArray = new Cell[height + 1, width];
 
 		for (int i = 0; i < height; i++){
 			for (int j = 0; j < width; j++){
@@ -30,6 +30,22 @@ public class GridInit : MonoBehaviour {
 				newCell.transform.parent = this.transform;
 				cellsArray[i,j] = newCell;
 			}
+		}
+		// Создаем дополнительный ряд, для Корзин
+		for (int j = 0; j < width; j++){
+			Cell cell = this.gameObject.GetComponentInChildren<Cell>();
+
+			float xBase = this.transform.position.x + cell.GetComponent<SpriteRenderer>().bounds.size.x / 2 + border;
+			float yBase = this.transform.position.y - cell.GetComponent<SpriteRenderer>().bounds.size.y / 2 - border;
+			float xPos = xBase + (cell.GetComponent<SpriteRenderer>().bounds.size.x + HSpace) * j;
+			float yPos = yBase - (cell.GetComponent<SpriteRenderer>().bounds.size.y + VSpace) * height ;
+			Vector3 cellPos = new Vector3(xPos, yPos, 0);
+
+			Cell newCell = Instantiate(cell, cellPos, new Quaternion (0,0,0,0));
+			newCell.GetComponent<SpriteRenderer>().enabled = false;
+			newCell.GetComponent<CircleCollider2D>().enabled = false;
+			newCell.transform.parent = this.transform;
+			cellsArray[height,j] = newCell;
 		}
 	}
 
