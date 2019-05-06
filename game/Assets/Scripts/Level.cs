@@ -20,8 +20,8 @@ public class Level : MonoBehaviour {
 		
 		var ifBlock = new e.ColorCondition(e.Color.Green, new e.Point(-1, 0),  2, 2);
 		var chColor = new e.ColorSwitch(e.Color.Red, e.Color.Green, 3, 4);
-		var basket = new e.Bascket(e.Color.Green, 3, 8);
-		var basket2 = new e.Bascket(e.Color.Green, 1, 8);
+		var basket = new e.Bascket(e.Color.Green, 3, 7);
+		var basket2 = new e.Bascket(e.Color.Green, 1, 7);
 		
 		this.game = new e.Game();
 		game.AddObject(ifBlock);
