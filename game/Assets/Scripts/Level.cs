@@ -57,6 +57,7 @@ public class Level : MonoBehaviour {
 			else if (obj is e.ColorSwitch) {
 				var clone = Instantiate(this.ColorSwitchPrefab);
 				clone.GetComponent<ColorSwitch>().ColorSwitcher = obj as e.ColorSwitch;
+				clone.GetComponent<ColorSwitch>().active = true;
 			}
 		}
 

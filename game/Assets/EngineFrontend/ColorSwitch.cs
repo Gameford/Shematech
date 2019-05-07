@@ -9,10 +9,9 @@ public class ColorSwitch : MonoBehaviour {
 	public float time = 0;
 	public int step = 0;
 
-	private bool active = false;
+	public bool active = false;
 
 	void Start () {
-
 	}
 	
 	void Update () {
@@ -23,9 +22,13 @@ public class ColorSwitch : MonoBehaviour {
 		if (time >= 1) {
 			time = 0;
 
-			var actions = this.ColorSwitcher.GetActions()[step];
-			this.transform.position = new Vector2(actions.Position.X, actions.Position.Y);
-			switch (actions.Type) {
+			var action = this.ColorSwitcher.GetActions()[step];
+			var grid = GameObject.Find("Grid").GetComponent<GridInit>();
+			Cell cell = grid.cellsArray[action.Position.Y, action.Position.X];
+			if (cell) {
+				this.transform.position = cell.transform.position;
+			}
+			switch (action.Type) {
 			}
 
 			step++;
