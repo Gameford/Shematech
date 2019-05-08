@@ -235,5 +235,17 @@ namespace Engine
             }
             return move_actions;    
         }
+
+        public IList<StepAction> GetActionsByCell(int x, int y)
+        {
+            IList<StepAction> cell_actions = new List<StepAction>();
+            foreach (var action in _actions)
+            {
+                if(action.Position.X == x && action.Position.Y == y) {
+                    cell_actions.Add(action);
+                }
+            }
+            return cell_actions;  
+        }
     }
 }

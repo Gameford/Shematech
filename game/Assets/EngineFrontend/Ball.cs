@@ -26,33 +26,34 @@ public class Ball : MonoBehaviour {
 				var action = actions[step];
 				var grid = GameObject.Find("Grid").GetComponent<GridInit>();
 				Cell cell = null;
-				switch (action.Type) {
-					case e.ActionType.BallProduced:
-						
-					break;
-					case e.ActionType.BallMove:
-						cell = grid.cellsArray[action.Position.Y, action.Position.X];
-						if (cell) {
-							this.transform.position = cell.transform.position;
-						}
-						else if(CheckConsume(step)) {
+				var pos = action.Position;
+				if (pos.X >= 0 && pos.Y >= 0) {
+					cell = grid.cellsArray[pos.Y, pos.X];
+					var cell_actions = this.eBall.GetActionsByCell(pos.X, pos.Y);
+					foreach(var cell_action in cell_actions) {
+						switch (cell_action.Type) {
+							case e.ActionType.BallProduced:
+								
+							break;
+							case e.ActionType.BallMove:
+								if (cell) {
+									this.transform.position = cell.transform.position;
+								}
+								else if(false) {
 
+								}
+							break;
+							case e.ActionType.BallChangeColor:
+								Sprite[] s = Resources.LoadAll<Sprite>("Graphics/GameField/robots");
+								this.GetComponent<SpriteRenderer>().sprite = s[0];
+							break;
 						}
-					break;
+					}
 				}
 			}
 			
 
 			step++;
 		}
-	}
-
-	bool CheckConsume(int step) {
-		var action = this.eBall.GetActions()[step];
-		if (this.eBall.GetActions()[step+1].Type == e.ActionType.BallInteract
-			&& this.eBall.GetActions()[step+2].Type == e.ActionType.BallConsumed) {
-				return true;
-		}
-		return false;
 	}
 }
