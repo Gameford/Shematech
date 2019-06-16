@@ -1,11 +1,11 @@
-﻿ 
+﻿using System;
 using System.Collections;
 using UnityEngine;
+using cb = ControlBlock;
+using e = Engine;
  
 class Dragger : MonoBehaviour
 {
-    public Color mouseOverColor = Color.blue;
-    public Color originalColor = Color.yellow;
     public bool dragging = false;
     public Vector3 delta = new Vector3(0F, 0F, 0F);
     public Cell rightCell;
@@ -48,6 +48,26 @@ class Dragger : MonoBehaviour
 			this.transform.Translate( obj.transform.position.x - this.transform.position.x, obj.transform.position.y - this.transform.position.y, 0F);
 			rightCell.isRightCell = false;
 			obj.GetComponent<CircleCollider2D>().enabled = false;
+
+            // При отпускании блока, нужно добалять соответсвующий блок в game
+            var cellPos = rightCell.PosInGrid;
+            var go = this.gameObject;
+            e.Game game = GameObject.Find("GameField").GetComponent<Level>().game;
+            switch (go.GetComponent<ControlBlock>().GetBlockType()){
+                
+                case cb.BlockType.cbAction:
+                    Debug.Log("cdAction");
+                    var new_act = new e.ColorSwitch(e.Color.Red, e.Color.Green, rightCell.posInGridX, rightCell.posInGridY);
+                    game.AddObject(new_act);
+                    break;
+                case cb.BlockType.cbCondition:
+                    Debug.Log("cbCondition");
+                    var new_cond = new e.ColorCondition(go.GetComponent<ConditionBlock>().matchColor, new e.Point(-1, 0), rightCell.posInGridX, rightCell.posInGridY);
+                    game.AddObject(new_cond);
+                    break;
+                case cb.BlockType.cbCicle:
+                    break;
+		    }
 		}
     }
 }

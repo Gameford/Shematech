@@ -18,16 +18,14 @@ public class Level : MonoBehaviour {
 		ballHistory = e.BallHistory.GetInstance();
 		ballHistory.Clear();
 		
-		var ifBlock = new e.ColorCondition(e.Color.Green, new e.Point(-1, 0),  2, 2);
-		var chColor = new e.ColorSwitch(e.Color.Red, e.Color.Green, 3, 4);
 		var basket = new e.Bascket(e.Color.Green, 3, 7);
 		var basket2 = new e.Bascket(e.Color.Green, 1, 7);
+		var basket3 = new e.Bascket(e.Color.Green, 2, 7);
 		
 		this.game = new e.Game();
-		game.AddObject(ifBlock);
-		game.AddObject(chColor);
 		game.AddObject(basket);
 		game.AddObject(basket2);
+		game.AddObject(basket3);
 	}
 
 	float time = 0.0F;
@@ -37,15 +35,16 @@ public class Level : MonoBehaviour {
 
 	public void Play () {
 		Dictionary<e.Color, int> balls = new Dictionary<e.Color, int> {
-			{e.Color.Green, 1},
-			{e.Color.Red, 1}
+			{e.Color.Red, 3},
+			{e.Color.Green, 2},
+			{e.Color.Blue, 2}
 		};
 
 		var g = new e.BallGenerator(balls, 2, -1);
 		
 		game.AddObject(g);
 
-		for (var i = 0; i < 17; i++) {
+		for (var i = 0; i < 350; i++) {
 			game.Step();
 		}
 		
@@ -65,6 +64,8 @@ public class Level : MonoBehaviour {
 			var ball = ballHistory.GetList()[i];
 		  var clone = Instantiate(this.BallPrefab);
 			clone.GetComponent<Ball>().eBall = ball;
+			e.Color originColor = ball.GetActions()[0].Color;
+			clone.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<Ball>().GetSpriteByColor(originColor); 
 		}
 	}
 }

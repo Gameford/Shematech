@@ -5,55 +5,72 @@ using e = Engine;
 
 public class Ball : MonoBehaviour {
 	public e.Ball eBall = null;
-
+	public Sprite[] sprites;
+	private Dictionary<e.Color, Sprite> spritesDict = null;
 	public float time = 0;
 	public int step = 0;
-
-	// Use this for initialization
-	void Start () {
-		
+	private Vector3 step_position = Vector3.zero;
+	void Awake(){
+		spritesDict = new Dictionary<e.Color, Sprite> {
+			{e.Color.Green, sprites[0]},
+			{e.Color.Purple, sprites[1]},
+			{e.Color.Blue, sprites[2]},
+			{e.Color.Yellow, sprites[3]},
+			{e.Color.Red, sprites[4]}
+		};
+		step_position = this.transform.position;
+	}
+	
+	public Sprite GetSpriteByColor(e.Color color){
+		return spritesDict[color];
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		time += Time.deltaTime;
+		var actions = this.eBall.GetMoveActions();
+		if (actions.Count > step) {
+			var action = actions[step];
+			var grid = GameObject.Find("Grid").GetComponent<GridInit>();
+			Cell cell = null;
+			var pos = action.Position;
+			if (pos.X >= 0 && pos.Y >= 0) {
+				cell = grid.cellsArray[pos.Y, pos.X];
+				var cell_actions = this.eBall.GetActionsByCell(pos.X, pos.Y);
+				foreach(var cell_action in cell_actions) {
+					switch (cell_action.Type) {
+						case e.ActionType.BallProduced:
+							
+						break;
+						case e.ActionType.BallMove:
+							if (cell) {
+								this.transform.position = Vector3.Lerp(this.step_position, cell.transform.position, time);
+							}
+							else if(false) {
 
-		if (time >= 1) {
-			time = 0;
-
-			var actions = this.eBall.GetMoveActions();
-			if (actions.Count > step) {
-				var action = actions[step];
-				var grid = GameObject.Find("Grid").GetComponent<GridInit>();
-				Cell cell = null;
-				var pos = action.Position;
-				if (pos.X >= 0 && pos.Y >= 0) {
-					cell = grid.cellsArray[pos.Y, pos.X];
-					var cell_actions = this.eBall.GetActionsByCell(pos.X, pos.Y);
-					foreach(var cell_action in cell_actions) {
-						switch (cell_action.Type) {
-							case e.ActionType.BallProduced:
-								
-							break;
-							case e.ActionType.BallMove:
-								if (cell) {
-									this.transform.position = cell.transform.position;
-								}
-								else if(false) {
-
-								}
-							break;
-							case e.ActionType.BallChangeColor:
-								Sprite[] s = Resources.LoadAll<Sprite>("Graphics/GameField/robots");
-								this.GetComponent<SpriteRenderer>().sprite = s[0];
-							break;
-						}
+							}
+						break;
+						case e.ActionType.BallChangeColor:
+							if(time >= 1){
+								this.GetComponent<SpriteRenderer>().sprite = sprites[0];
+							}
+						break;
 					}
+				}
+				if(this.transform.position == cell.transform.position){
+					this.step_position = this.transform.position;
+					step++;	
+					time = 0;		
+				}
+			}
+			else {
+				if(time >= 1){
+					step++;	
+					time = 0;	
 				}
 			}
 			
-
-			step++;
 		}
+		
 	}
 }
