@@ -28,6 +28,7 @@ public class GridInit : MonoBehaviour {
 				newCell.GetComponent<SpriteRenderer>().enabled = true;
 				newCell.GetComponent<CircleCollider2D>().enabled = true;
 				newCell.transform.parent = this.transform;
+				newCell.SetPosInGrid(i,j);
 				cellsArray[i,j] = newCell;
 			}
 		}
@@ -42,9 +43,13 @@ public class GridInit : MonoBehaviour {
 			Vector3 cellPos = new Vector3(xPos, yPos, 0);
 
 			Cell newCell = Instantiate(cell, cellPos, new Quaternion (0,0,0,0));
-			newCell.GetComponent<SpriteRenderer>().enabled = false;
+			newCell.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/GameField/ball_exit");
+			newCell.GetComponent<SpriteRenderer>().enabled = true;
+			newCell.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
+			newCell.GetComponent<SpriteRenderer>().sortingOrder = 0;
 			newCell.GetComponent<CircleCollider2D>().enabled = false;
 			newCell.transform.parent = this.transform;
+			newCell.SetPosInGrid(height,j);
 			cellsArray[height,j] = newCell;
 		}
 	}

@@ -61,7 +61,7 @@ namespace Engine
 
         public void Interact(Ball ball)
         {
-            if (!ball.Color.Equals(FromColor))
+            if (false && !ball.Color.Equals(FromColor))
             {
                 _actions.Add(new StepAction(ActionType.SwitcherNope, null, GetPosition()));
                 return;

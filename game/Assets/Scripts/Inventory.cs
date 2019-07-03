@@ -8,8 +8,8 @@ public class Inventory : MonoBehaviour {
 	private GameObject [] switcherInInventoryArray = null;
 	Vector3 conditionItemPosition = new Vector3(0F, 0F, 0F);
 	private GameObject [] conditionInInventoryArray = null;
-	private int switcherCounter = 10;
-	private int conditionCounter = 10;
+	private int switcherCounter = 2;
+	private int conditionCounter = 1;
 	GameObject draggedBlock = null;
 
 	public void OnBlockUp(GameObject block){

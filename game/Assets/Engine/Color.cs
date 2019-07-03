@@ -3,6 +3,9 @@ namespace Engine
     public enum Color
     {
         Green,
-        Red
+        Red,
+        Purple,
+        Yellow,
+        Blue
     }
 }
