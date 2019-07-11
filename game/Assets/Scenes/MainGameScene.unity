@@ -1514,11 +1514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12462866e90d554293fd9519e67b200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballList:
-  - Color: 0
-    Count: 0
-  - Color: 0
-    Count: 0
+  yellowBallsCount: 3
+  redBallsCount: 5
+  blueBallsCount: 4
+  greenBallsCount: 6
+  purpleBallsCount: 3
   GeneratorPrefab: {fileID: 1429837322338498, guid: 455f710ecda4f7a4daf821928ec366e0,
     type: 3}
   ColorSwitchPrefab: {fileID: 1890949346960800, guid: a7e6a821ecaf7d74983dc2bfa8ba6fd9,

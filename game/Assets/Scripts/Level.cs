@@ -8,13 +8,24 @@ public class Level : MonoBehaviour {
 	public e.Game game;
 	public e.BallHistory ballHistory;
 
-	public List<e.Ball> ballList;
+	public int yellowBallsCount;
+	public int redBallsCount;
+	public int blueBallsCount;
+	public int greenBallsCount;
+	public int purpleBallsCount;
+	private Dictionary<e.Color, int> balls = null;
 	public GameObject GeneratorPrefab;
 	public GameObject ColorSwitchPrefab;
 	public GameObject BallPrefab;
     private bool isPlay;
-
   void Start () {
+	  	balls = new Dictionary<e.Color, int> {
+			{e.Color.Red, redBallsCount},
+			{e.Color.Green, greenBallsCount},
+			{e.Color.Blue, blueBallsCount},
+			{e.Color.Purple, purpleBallsCount},
+			{e.Color.Yellow, yellowBallsCount}
+		};
 		ballHistory = e.BallHistory.GetInstance();
 		ballHistory.Clear();
 		
@@ -34,12 +45,6 @@ public class Level : MonoBehaviour {
 	}
 
 	public void Play () {
-		Dictionary<e.Color, int> balls = new Dictionary<e.Color, int> {
-			{e.Color.Red, 3},
-			{e.Color.Green, 2},
-			{e.Color.Blue, 2}
-		};
-
 		var g = new e.BallGenerator(balls, 2, -1);
 		
 		game.AddObject(g);
@@ -62,7 +67,7 @@ public class Level : MonoBehaviour {
 
 		for (var i = 0; i < ballHistory.GetList().Count; i++ ) {
 			var ball = ballHistory.GetList()[i];
-		  var clone = Instantiate(this.BallPrefab);
+		  	var clone = Instantiate(this.BallPrefab);
 			clone.GetComponent<Ball>().eBall = ball;
 			e.Color originColor = ball.GetActions()[0].Color;
 			clone.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<Ball>().GetSpriteByColor(originColor); 
