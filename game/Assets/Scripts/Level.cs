@@ -6,7 +6,7 @@ using e = Engine;
 [System.Serializable]
 public class Level : MonoBehaviour {
 	public e.Game game;
-	public e.BallHistory ballHistory;
+	private e.BallHistory ballHistory;
 
 	public int yellowBallsCount;
 	public int redBallsCount;
@@ -54,11 +54,7 @@ public class Level : MonoBehaviour {
 		}
 		
 		foreach(var obj in game.GetCurrentWorld()) {
-			if (obj is e.BallGenerator) {
-				var clone = Instantiate(this.GeneratorPrefab);
-				clone.GetComponent<Generator>().BallGenerator = obj as e.BallGenerator;
-			}
-			else if (obj is e.ColorSwitch) {
+			if (obj is e.ColorSwitch) {
 				var clone = Instantiate(this.ColorSwitchPrefab);
 				clone.GetComponent<ColorSwitch>().ColorSwitcher = obj as e.ColorSwitch;
 				clone.GetComponent<ColorSwitch>().active = true;
@@ -67,7 +63,7 @@ public class Level : MonoBehaviour {
 
 		for (var i = 0; i < ballHistory.GetList().Count; i++ ) {
 			var ball = ballHistory.GetList()[i];
-		  	var clone = Instantiate(this.BallPrefab);
+		  	var clone = Instantiate(this.BallPrefab, GeneratorPrefab.transform.position, GeneratorPrefab.transform.rotation);
 			clone.GetComponent<Ball>().eBall = ball;
 			e.Color originColor = ball.GetActions()[0].Color;
 			clone.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<Ball>().GetSpriteByColor(originColor); 

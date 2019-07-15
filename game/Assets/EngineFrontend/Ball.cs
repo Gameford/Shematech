@@ -45,6 +45,12 @@ public class Ball : MonoBehaviour {
 						case e.ActionType.BallMove:
 							if (cell) {
 								this.transform.position = Vector3.Lerp(this.step_position, cell.transform.position, time);
+								Vector3 difference = this.step_position - cell.transform.position; 
+								difference.Normalize();
+								// вычисляемый необходимый угол поворота
+								float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90;
+								// Применяем поворот вокруг оси Z
+								this.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
 							}
 							else if(false) {
 
