@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using e = Engine;
 using cb = ControlBlock;
 
 public class Inventory : MonoBehaviour {
@@ -8,7 +9,12 @@ public class Inventory : MonoBehaviour {
 	private GameObject [] switcherInInventoryArray = null;
 	Vector3 conditionItemPosition = new Vector3(0F, 0F, 0F);
 	private GameObject [] conditionInInventoryArray = null;
-	private int switcherCounter = 2;
+	private int redSwitcherCounter = 2;
+	private int greenSwitcherCounter = 2;
+	private int yellowSwitcherCounter = 2;
+	private int purpleSwitcherCounter = 2;
+	private int blueSwitcherCounter = 2;
+	private int switcherCounter = 0;
 	private int conditionCounter = 1;
 	GameObject draggedBlock = null;
 
@@ -21,6 +27,7 @@ public class Inventory : MonoBehaviour {
 	}
 
 	void Start(){
+		switcherCounter = redSwitcherCounter + greenSwitcherCounter + yellowSwitcherCounter + purpleSwitcherCounter + blueSwitcherCounter;
 		this.switcherInInventoryArray = new GameObject[switcherCounter];
 		this.conditionInInventoryArray = new GameObject[conditionCounter];
 
@@ -31,6 +38,9 @@ public class Inventory : MonoBehaviour {
 		switcherItemPosition = tmp_switncher.GetComponent<SpriteRenderer>().transform.position;
 
 		for (var i=0; i<switcherCounter; i++){
+			e.Color color = GetColor();
+			tmp_switncher.GetComponent<ColorSwitch>().color = color;
+			tmp_switncher.GetComponent<SpriteRenderer>().sprite = tmp_switncher.GetComponent<ColorSwitch>().spritesDict[color];
 			var clone = Instantiate(tmp_switncher);
 			clone.transform.position = switcherItemPosition;
 			clone.transform.parent = this.transform;
@@ -112,5 +122,30 @@ public class Inventory : MonoBehaviour {
 		this.switcherInInventoryArray[switcherCounter] = block;
 		switcherCounter++;
 	}
+
+	e.Color GetColor(){
+		if (redSwitcherCounter > 0){
+			redSwitcherCounter--;
+			return e.Color.Red;
+		}
+		if (greenSwitcherCounter > 0){
+			greenSwitcherCounter--;
+			return e.Color.Green;
+		}
+		if (yellowSwitcherCounter > 0){
+			yellowSwitcherCounter--;
+			return e.Color.Yellow;
+		} 
+		if (purpleSwitcherCounter > 0){
+			purpleSwitcherCounter--;
+			return e.Color.Purple;
+		} 
+		if (blueSwitcherCounter > 0){
+			blueSwitcherCounter--;
+			return e.Color.Blue;
+		}
+		return e.Color.Red;
+	}
+
 }
 

@@ -171,6 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493f68dda92574d469465b591c877746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: a419e5dad03bf074aab1ff3cae99a1e2, type: 3}
+  - {fileID: 21300000, guid: 4df1b2eedc98df045a3afb95ad4be061, type: 3}
+  - {fileID: 21300000, guid: c428586fd68f4994e8c538a31e5ee280, type: 3}
+  - {fileID: 21300000, guid: 9b12256ae061af84b8ed4f14cab9c31a, type: 3}
+  - {fileID: 21300000, guid: 065176f10c540064fbf884488b7a1633, type: 3}
   time: 0
   step: 0
+  color: 0
   active: 0

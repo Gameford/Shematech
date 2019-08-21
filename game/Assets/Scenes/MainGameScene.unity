@@ -1597,7 +1597,7 @@ MonoBehaviour:
   yellowBallsCount: 3
   redBallsCount: 5
   blueBallsCount: 4
-  greenBallsCount: 6
+  greenBallsCount: 2
   purpleBallsCount: 3
   GeneratorPrefab: {fileID: 1241659354}
   ColorSwitchPrefab: {fileID: 1890949346960800, guid: a7e6a821ecaf7d74983dc2bfa8ba6fd9,
@@ -1937,6 +1937,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1396221899}
     m_Modifications:
+    - target: {fileID: 1890949346960800, guid: a7e6a821ecaf7d74983dc2bfa8ba6fd9, type: 3}
+      propertyPath: m_Name
+      value: Switcher
+      objectReference: {fileID: 0}
     - target: {fileID: 4746650743713020, guid: a7e6a821ecaf7d74983dc2bfa8ba6fd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.82
@@ -2227,7 +2231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570489560618554, guid: c54ac2b168d7b054ca1d838c63362592, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c54ac2b168d7b054ca1d838c63362592, type: 3}

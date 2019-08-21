@@ -68,5 +68,14 @@ public class Level : MonoBehaviour {
 			e.Color originColor = ball.GetActions()[0].Color;
 			clone.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<Ball>().GetSpriteByColor(originColor); 
 		}
+
+		var grid = GameObject.Find("Grid").GetComponent<GridInit>();
+		int height = grid.height;
+		int width = grid.width;
+		for (int i = 0; i < height; i++){
+			for (int j = 0; j < width; j++){
+				grid.cellsArray[i,j].GetComponent<SpriteRenderer>().enabled = false;
+			}
+		}
 	}
 }

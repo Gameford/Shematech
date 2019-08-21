@@ -58,7 +58,12 @@ public class Ball : MonoBehaviour {
 						break;
 						case e.ActionType.BallChangeColor:
 							if(time >= 1){
-								this.GetComponent<SpriteRenderer>().sprite = sprites[0];
+								// TODO Механика получения нужного цвета.
+								// При расстановке блоков надо сохранять цвет и от бэка получать цвет на который поменяли.
+								// Для этого при выставлении блока надо сохранять его цвет в бэк
+								// А для этого цвет надо хранить в экземпляре блока.
+								e.Color color = cell_action.Color;
+								this.GetComponent<SpriteRenderer>().sprite = spritesDict[color];
 							}
 						break;
 					}

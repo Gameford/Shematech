@@ -57,7 +57,7 @@ class Dragger : MonoBehaviour
                 
                 case cb.BlockType.cbAction:
                     Debug.Log("cdAction");
-                    var new_act = new e.ColorSwitch(e.Color.Red, e.Color.Green, rightCell.posInGridX, rightCell.posInGridY);
+                    var new_act = new e.ColorSwitch(0, this.GetComponent<ColorSwitch>().color, rightCell.posInGridX, rightCell.posInGridY);
                     game.AddObject(new_act);
                     break;
                 case cb.BlockType.cbCondition:
