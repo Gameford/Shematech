@@ -6,6 +6,7 @@ using cb = ControlBlock;
 
 public class Inventory : MonoBehaviour {
 	Vector3 switcherItemPosition = new Vector3(0F, 0F, 0F);
+	Vector3 counterItemPosition = new Vector3(0F, 0F, 0F);
 	private GameObject [] switcherInInventoryArray = null;
 	Vector3 conditionItemPosition = new Vector3(0F, 0F, 0F);
 	private GameObject [] conditionInInventoryArray = null;
@@ -15,7 +16,12 @@ public class Inventory : MonoBehaviour {
 	private int purpleSwitcherCounter = 2;
 	private int blueSwitcherCounter = 2;
 	private int switcherCounter = 0;
-	private int conditionCounter = 1;
+	private int redConditionCounter = 1;
+	private int greenConditionCounter = 1;
+	private int yellowConditionCounter = 1;
+	private int purpleConditionCounter = 1;
+	private int blueConditionCounter = 1;
+	private int conditionCounter = 0;
 	GameObject draggedBlock = null;
 
 	public void OnBlockUp(GameObject block){
@@ -28,6 +34,7 @@ public class Inventory : MonoBehaviour {
 
 	void Start(){
 		switcherCounter = redSwitcherCounter + greenSwitcherCounter + yellowSwitcherCounter + purpleSwitcherCounter + blueSwitcherCounter;
+		conditionCounter = redConditionCounter + greenConditionCounter + yellowConditionCounter + purpleConditionCounter + blueConditionCounter;
 		this.switcherInInventoryArray = new GameObject[switcherCounter];
 		this.conditionInInventoryArray = new GameObject[conditionCounter];
 
@@ -38,7 +45,7 @@ public class Inventory : MonoBehaviour {
 		switcherItemPosition = tmp_switncher.GetComponent<SpriteRenderer>().transform.position;
 
 		for (var i=0; i<switcherCounter; i++){
-			e.Color color = GetColor();
+			e.Color color = GetSwitcherColor();
 			tmp_switncher.GetComponent<ColorSwitch>().color = color;
 			tmp_switncher.GetComponent<SpriteRenderer>().sprite = tmp_switncher.GetComponent<ColorSwitch>().spritesDict[color];
 			var clone = Instantiate(tmp_switncher);
@@ -53,11 +60,14 @@ public class Inventory : MonoBehaviour {
 		tmpCondition.GetComponent<SpriteRenderer>().enabled = false;
 		tmpCondition.GetComponent<Collider2D>().enabled = false;
 
-		switcherItemPosition = tmpCondition.GetComponent<SpriteRenderer>().transform.position;
+		counterItemPosition = tmpCondition.GetComponent<SpriteRenderer>().transform.position;
 
 		for (var i=0; i<conditionCounter; i++){
+			e.Color color = GetConditionColor();
+			tmpCondition.GetComponent<ConditionBlock>().color = color;
+			tmpCondition.GetComponent<SpriteRenderer>().sprite = tmpCondition.GetComponent<ConditionBlock>().spritesDict[color];
 			var clone = Instantiate(tmpCondition);
-			clone.transform.position = switcherItemPosition;
+			clone.transform.position = counterItemPosition;
 			clone.transform.parent = this.transform;
 			clone.GetComponent<SpriteRenderer>().enabled = false;
 			clone.GetComponent<Collider2D>().enabled = false;
@@ -88,6 +98,7 @@ public class Inventory : MonoBehaviour {
 				ShowNextChangeBlock();
 				break;
 			case cb.BlockType.cbCondition:
+				ShowNextConditionBlock();
 				break;
 			case cb.BlockType.cbCicle:
 				break;
@@ -123,7 +134,7 @@ public class Inventory : MonoBehaviour {
 		switcherCounter++;
 	}
 
-	e.Color GetColor(){
+	e.Color GetSwitcherColor(){
 		if (redSwitcherCounter > 0){
 			redSwitcherCounter--;
 			return e.Color.Red;
@@ -142,6 +153,30 @@ public class Inventory : MonoBehaviour {
 		} 
 		if (blueSwitcherCounter > 0){
 			blueSwitcherCounter--;
+			return e.Color.Blue;
+		}
+		return e.Color.Red;
+	}
+
+	e.Color GetConditionColor(){
+		if (redConditionCounter > 0){
+			redConditionCounter--;
+			return e.Color.Red;
+		}
+		if (greenConditionCounter > 0){
+			greenConditionCounter--;
+			return e.Color.Green;
+		}
+		if (yellowConditionCounter > 0){
+			yellowConditionCounter--;
+			return e.Color.Yellow;
+		} 
+		if (purpleConditionCounter > 0){
+			purpleConditionCounter--;
+			return e.Color.Purple;
+		} 
+		if (blueConditionCounter > 0){
+			blueConditionCounter--;
 			return e.Color.Blue;
 		}
 		return e.Color.Red;

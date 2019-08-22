@@ -62,7 +62,7 @@ class Dragger : MonoBehaviour
                     break;
                 case cb.BlockType.cbCondition:
                     Debug.Log("cbCondition");
-                    var new_cond = new e.ColorCondition(go.GetComponent<ConditionBlock>().matchColor, new e.Point(-1, 0), rightCell.posInGridX, rightCell.posInGridY);
+                    var new_cond = new e.ColorCondition(go.GetComponent<ConditionBlock>().color, new e.Point(-1, 0), rightCell.posInGridX, rightCell.posInGridY);
                     game.AddObject(new_cond);
                     break;
                 case cb.BlockType.cbCicle:

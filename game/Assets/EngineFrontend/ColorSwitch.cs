@@ -24,6 +24,9 @@ public class ColorSwitch : MonoBehaviour {
 	}
 	
 	void Update () {
+		// Ваще не в рот ебу что это за код. С ним работает. Без него тоже. 
+		// Пусть будет. 
+		/*
 		if (!this.active) { return; }
 
 		time += Time.deltaTime;
@@ -42,5 +45,6 @@ public class ColorSwitch : MonoBehaviour {
 
 			step++;
 		}
+ 		*/
 	}
 }
