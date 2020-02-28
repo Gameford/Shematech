@@ -10,10 +10,7 @@ public class Generator : MonoBehaviour {
 	public int step = 0;
 
 	private bool active = false;
-
-	void Start () {
-	}
-	
+		
 	void Update () {
 		if (!this.active) { return; }
 

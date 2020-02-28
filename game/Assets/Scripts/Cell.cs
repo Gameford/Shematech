@@ -7,8 +7,6 @@ public class Cell : MonoBehaviour {
 	public bool isRightCell = false;
 	public int posInGridX = 0;
 	public int posInGridY = 0;
-	void OnTriggerStay2D(Collider2D collider) {
-	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		isCollision = true;

@@ -5,6 +5,4 @@ using UnityEngine;
 [System.Serializable]
 public class InventorySlot : MonoBehaviour {
     public GameObject ColorSwitch;
-    void Start(){
-    }
 }
