@@ -54,10 +54,6 @@ public class GridInit : MonoBehaviour {
 		}
 	}
 
-	void Update () {
-		
-	}
-
 	public bool DropBlock(GameObject block){
 		Cell rightCell = null;
 		float minDistance = 999;

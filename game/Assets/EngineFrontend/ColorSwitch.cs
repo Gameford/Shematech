@@ -20,31 +20,4 @@ public class ColorSwitch : MonoBehaviour {
 			{e.Color.Red, sprites[4]}
 		};
 	}
-	void Start () {
-	}
-	
-	void Update () {
-		// Понятия не имею, что это за код. С ним работает. Без него тоже. 
-		// Пусть будет. 
-		/*
-		if (!this.active) { return; }
-
-		time += Time.deltaTime;
-
-		if (time >= 1) {
-			time = 0;
-
-			var action = this.ColorSwitcher.GetActions()[step];
-			var grid = GameObject.Find("Grid").GetComponent<GridInit>();
-			Cell cell = grid.cellsArray[action.Position.Y, action.Position.X];
-			if (cell) {
-				this.transform.position = cell.transform.position;
-			}
-			switch (action.Type) {
-			}
-
-			step++;
-		}
- 		*/
-	}
 }

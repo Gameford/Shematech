@@ -41,9 +41,6 @@ public class Level : MonoBehaviour {
 
 	float time = 0.0F;
 	
-	void Update () {
-	}
-
 	public void Play () {
 		var g = new e.BallGenerator(balls, 2, -1);
 		
