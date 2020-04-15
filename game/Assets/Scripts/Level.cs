@@ -32,11 +32,13 @@ public class Level : MonoBehaviour {
 		var basket = new e.Bascket(e.Color.Green, 3, 7);
 		var basket2 = new e.Bascket(e.Color.Green, 1, 7);
 		var basket3 = new e.Bascket(e.Color.Green, 2, 7);
+		var dog = new e.Dog(2, 1);
 		
 		this.game = new e.Game();
 		game.AddObject(basket);
 		game.AddObject(basket2);
 		game.AddObject(basket3);
+		game.AddObject(dog);
 	}
 
 	float time = 0.0F;
